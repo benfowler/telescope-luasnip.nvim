@@ -1,5 +1,7 @@
 # telescope-luasnip
 
+**WARNING! This plugin hasn't yet been thoroughly tested, and should be considered alpha-quality for now.  Proceed with caution.**
+
 Crude and barely functional integration for
 [LuaSnip](https://github.com/L3MON4D3/LuaSnip) with
 [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
