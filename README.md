@@ -10,7 +10,7 @@ This is a port of
 [fhill2/telescope-ultisnips.nvim](https://github.com/fhill2/telescope-ultisnips.nvim)
 from Ultisnips to LuaSnip.  Thanks for the simple great idea!
 
-<img width="776" alt="Screenshot 2021-09-13 at 00 03 33" src="https://user-images.githubusercontent.com/1638317/133005504-462a12bc-5623-44ea-bd63-3b1834fd8ace.png">
+<img width="1365" alt="Screenshot 2021-09-13 at 05 42 29" src="https://user-images.githubusercontent.com/1638317/133025198-16aa7fbc-1655-4341-9248-805c330e4330.png">
 
 ## Requirements
 
