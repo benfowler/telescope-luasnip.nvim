@@ -67,16 +67,19 @@ local luasnip_fn = function(opts)
     table.sort(objs, function(a, b)
         if a.ft ~= b.ft then
             return a.ft > b.ft
+        elseif a.context.name ~= b.context.name then
+            return a.context.name > b.context.name
+        else
+            return a.context.trigger > b.context.trigger
         end
-        return a.context.trigger > b.context.trigger
     end)
 
     local displayer = entry_display.create({
         separator = " ",
         items = {
             { width = 12 },
-            { width = 16 },
             { width = 24 },
+            { width = 16 },
             { remaining = true },
         },
     })
@@ -84,8 +87,8 @@ local luasnip_fn = function(opts)
     local make_display = function(entry)
         return displayer({
             entry.value.ft,
-            entry.value.context.trigger,
             entry.value.context.name,
+            { entry.value.context.trigger, "TelescopeResultsNumber" },
             filter_description(entry.value.context.name, entry.value.context.description),
         })
     end
