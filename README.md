@@ -1,14 +1,10 @@
 # telescope-luasnip
 
-**WARNING! This plugin hasn't yet been thoroughly tested, and should be considered alpha-quality for now.  Proceed with caution.**
+This plugin adds a [LuaSnip](https://github.com/L3MON4D3/LuaSnip) snippet picker to the already-awesome Neovim [Telescope plugin](https://github.com/nvim-telescope/telescope.nvim).
 
-Crude and barely functional integration for
-[LuaSnip](https://github.com/L3MON4D3/LuaSnip) with
-[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
+This is a port of [fhill2/telescope-ultisnips.nvim](https://github.com/fhill2/telescope-ultisnips.nvim) from Ultisnips to LuaSnip.  Thanks for the simple great idea!
 
-This is a port of
-[fhill2/telescope-ultisnips.nvim](https://github.com/fhill2/telescope-ultisnips.nvim)
-from Ultisnips to LuaSnip.  Thanks for the simple great idea!
+**NOTE: This plugin is fairly new. If you find something wrong, please raise an issue or better yet, raise a PR.**
 
 <img width="1365" alt="Screenshot 2021-09-13 at 05 42 29" src="https://user-images.githubusercontent.com/1638317/133025198-16aa7fbc-1655-4341-9248-805c330e4330.png">
 
