@@ -104,9 +104,9 @@ local luasnip_fn = function(opts)
                     value = entry,
                     display = make_display,
 
-                    ordinal = entry.ft .. " " ..
-                              filter_null(entry.context.trigger) .. " " ..
+                    ordinal = filter_null(entry.context.trigger) .. " " ..
                               filter_null(entry.context.name) .. " " ..
+                              entry.ft .. " " ..
                               filter_description(entry.context.name, entry.context.description),
 
                     preview_command = function(pvw_entry, bufnr)
