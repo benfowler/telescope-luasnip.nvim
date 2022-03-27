@@ -35,7 +35,14 @@ local get_docstring = function(snippets, ft, context)
         if snips_for_ft then
             for _, snippet in pairs(snips_for_ft) do
                 if context.name == snippet.name and context.trigger == snippet.trigger then
-                    docstring = snippet:get_docstring()
+                    local raw_docstring = snippet:get_docstring()
+                    if type(raw_docstring) == "string" then
+                        for chunk in string.gmatch(snippet:get_docstring(), "[^\n]+") do
+                            docstring[#docstring+1] = chunk
+                        end
+                    else
+                        docstring = raw_docstring
+                    end
                 end
             end
         end
