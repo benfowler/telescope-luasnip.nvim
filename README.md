@@ -6,7 +6,7 @@ This is a port of [fhill2/telescope-ultisnips.nvim](https://github.com/fhill2/te
 
 **NOTE: This plugin is fairly new. If you find something wrong, please raise an issue or better yet, raise a PR.**
 
-<img width="1365" alt="Screenshot 2021-09-13 at 05 42 29" src="https://user-images.githubusercontent.com/1638317/133025198-16aa7fbc-1655-4341-9248-805c330e4330.png">
+![telescope-luasnip.nvim in action](screenshot.png)
 
 ## Requirements
 
