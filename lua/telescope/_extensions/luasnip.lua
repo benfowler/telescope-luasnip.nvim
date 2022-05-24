@@ -118,7 +118,9 @@ local luasnip_fn = function(opts)
 
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
-                        vim.api.nvim_buf_set_option(bufnr, "filetype", entry.ft)
+			if not opts.disable_ft then
+                            vim.api.nvim_buf_set_option(bufnr, "filetype", entry.ft)
+			end
                         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, snippet)
                     end,
                 }
