@@ -131,14 +131,14 @@ local luasnip_fn = function(opts)
             actions.select_default:replace(function(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
                 actions.close(prompt_bufnr)
+                vim.cmd('startinsert')
                 vim.api.nvim_put({ selection.value.context.trigger }, "", true, true)
                 if (luasnip.expandable()) then
-                    vim.cmd('startinsert')
                     luasnip.expand()
-                    vim.cmd('stopinsert')
                 else
                     print("Snippet '" .. selection.value.context.name .. "'" .. "was selected, but LuaSnip.expandable() returned false")
                 end
+                vim.cmd('stopinsert')
             end)
             return true
         end,
