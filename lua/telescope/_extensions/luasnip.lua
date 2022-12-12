@@ -10,6 +10,7 @@ local pickers = require("telescope.pickers")
 local previewers = require("telescope.previewers")
 local entry_display = require("telescope.pickers.entry_display")
 local conf = require("telescope.config").values
+local ext_conf = require("telescope._extensions")
 
 local filter_null = function(str, default)
     return str and str or (default and default or "")
@@ -48,6 +49,13 @@ local get_docstring = function(luasnip, ft, context)
         end
     end
     return docstring
+end
+
+local default_search_text = function(entry)
+	return filter_null(entry.context.trigger) .. " " ..
+		filter_null(entry.context.name) .. " " ..
+		entry.ft .. " " ..
+		filter_description(entry.context.name, entry.context.description)
 end
 
 local luasnip_fn = function(opts)
@@ -107,14 +115,12 @@ local luasnip_fn = function(opts)
 
             results = objs,
             entry_maker = function(entry)
+		    search_fn = ext_conf._config.luasnip.search or default_search_text
                 return {
                     value = entry,
                     display = make_display,
 
-                    ordinal = filter_null(entry.context.trigger) .. " " ..
-                              filter_null(entry.context.name) .. " " ..
-                              entry.ft .. " " ..
-                              filter_description(entry.context.name, entry.context.description),
+		    ordinal = search_fn(entry),
 
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
@@ -145,4 +151,4 @@ local luasnip_fn = function(opts)
     }):find()
 end -- end custom function
 
-return telescope.register_extension({ exports = { luasnip = luasnip_fn } })
+return telescope.register_extension({ exports = { luasnip = luasnip_fn, filter_null = filter_null, filter_description = filter_description, get_docstring = get_docstring } })
