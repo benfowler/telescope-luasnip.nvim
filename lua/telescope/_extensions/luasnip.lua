@@ -115,7 +115,7 @@ local luasnip_fn = function(opts)
 
             results = objs,
             entry_maker = function(entry)
-		    search_fn = ext_conf._config.luasnip.search or default_search_text
+		    search_fn = ext_conf._config.luasnip and ext_conf._config.luasnip.search or default_search_text
                 return {
                     value = entry,
                     display = make_display,
