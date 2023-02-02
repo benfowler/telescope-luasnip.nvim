@@ -31,7 +31,7 @@ Then, you need to tell Telescope about this extension somewhere after your
 require('telescope').load_extension('luasnip')
 ```
 
-## Available functions
+## Usage
 
 ```lua
 require'telescope'.extensions.luasnip.luasnip{}
@@ -42,6 +42,33 @@ or
 
 ```vim
 :Telescope luasnip
+```
+
+## Configuration
+
+This Telescope plugin works fine as-is, and requires no further configuration.
+
+However, if you want, you can customise its search behaviour if you wish:
+
+```lua
+local lst = require('telescope').extensions.luasnip
+local luasnip = require('luasnip')
+
+require('telescope').setup {
+    extensions = {
+        ...
+        luasnip = {
+                search = function(entry)
+                        return lst.filter_null(entry.context.trigger) .. " " ..
+                               lst.filter_null(entry.context.name) .. " " ..
+                               entry.ft .. " " ..
+                               lst.filter_description(entry.context.name, entry.context.description) ..
+                               lst.get_docstring(luasnip, entry.ft, entry.context)[1]
+                end
+        },
+       ...
+    }
+}
 ```
 
 ## Help!
