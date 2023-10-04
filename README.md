@@ -4,7 +4,7 @@ This plugin adds a [LuaSnip](https://github.com/L3MON4D3/LuaSnip) snippet picker
 
 This is a port of [fhill2/telescope-ultisnips.nvim](https://github.com/fhill2/telescope-ultisnips.nvim) from Ultisnips to LuaSnip.  Thanks for the simple great idea!
 
-**NOTE: This plugin is fairly new. If you find something wrong, please raise an issue or better yet, raise a PR.**
+If you find something wrong, please raise an issue or better yet, raise a PR.
 
 ![telescope-luasnip.nvim in action](screenshot.png)
 
@@ -19,8 +19,8 @@ Install the plugin using your favourite package manager.
 
 ```lua
 use {
-    "benfowler/telescope-luasnip.nvim",
-    module = "telescope._extensions.luasnip",  -- if you wish to lazy-load
+  "benfowler/telescope-luasnip.nvim",
+  module = "telescope._extensions.luasnip",  -- if you wish to lazy-load
 }
 ```
 
@@ -60,19 +60,19 @@ local lst = require('telescope').extensions.luasnip
 local luasnip = require('luasnip')
 
 require('telescope').setup {
-    extensions = {
-        ...
-        luasnip = {
-                search = function(entry)
-                        return lst.filter_null(entry.context.trigger) .. " " ..
-                               lst.filter_null(entry.context.name) .. " " ..
-                               entry.ft .. " " ..
-                               lst.filter_description(entry.context.name, entry.context.description) ..
-                               lst.get_docstring(luasnip, entry.ft, entry.context)[1]
-                end
-        },
-       ...
-    }
+  extensions = {
+    ...
+    luasnip = {
+      search = function(entry)
+        return lst.filter_null(entry.context.trigger) .. " " ..
+               lst.filter_null(entry.context.name) .. " " ..
+               entry.ft .. " " ..
+               lst.filter_description(entry.context.name, entry.context.description) ..
+               lst.get_docstring(luasnip, entry.ft, entry.context)[1]
+      end
+    },
+    ...
+  }
 }
 ```
 
