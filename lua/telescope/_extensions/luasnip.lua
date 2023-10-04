@@ -2,6 +2,7 @@ local has_telescope, telescope = pcall(require, 'telescope')
 if not has_telescope then
   error('This plugins requires nvim-telescope/telescope.nvim')
 end
+
 -- stylua: ignore start
 local actions       = require("telescope.actions")
 local action_state  = require("telescope.actions.state")
