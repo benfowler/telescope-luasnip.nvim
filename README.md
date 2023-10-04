@@ -43,6 +43,11 @@ or
 ```vim
 :Telescope luasnip
 ```
+for windows system
+
+```vim
+:Telescope luasnip disable_ft=true
+```
 
 ## Configuration
 
