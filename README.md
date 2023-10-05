@@ -61,7 +61,7 @@ local luasnip = require('luasnip')
 
 require('telescope').setup {
     extensions = {
-        ...
+        -- ...
         luasnip = {
                 search = function(entry)
                         return lst.filter_null(entry.context.trigger) .. " " ..
@@ -71,8 +71,23 @@ require('telescope').setup {
                                lst.get_docstring(luasnip, entry.ft, entry.context)[1]
                 end
         },
-       ...
+       -- ...
     }
+}
+```
+
+To change theme, try:
+```lua
+require('telescope').setup {
+    luasnip = require("telescope.themes".get_dropdown({
+            border     = false,
+            preview    = { 
+                check_mime_type  = true
+            },
+            search = function ()
+                -- ... 
+            end
+        }))
 }
 ```
 
