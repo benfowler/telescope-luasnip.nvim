@@ -146,7 +146,7 @@ M.luasnip_fn = function(opts)
                 actions.close(prompt_bufnr)
 
                 -- Match snippets to be expanded
-                -- Extract them directly 
+                -- Extract them directly
                 local snippetsToExpand = {}
                 luasnip.available(function(snippet)
                     if snippet.trigger == selection.value.context.trigger then
@@ -162,7 +162,7 @@ M.luasnip_fn = function(opts)
                 else
                     error(
                         "telescope-luasnip.nvim: snippet '" .. selection.value.context.name .. "'" ..
-                            "was selected, but there is no snippets to expand!")
+                            " was selected, but there are no snippets to expand!")
                 end
                 -- vim.cmd('stopinsert')
             end)
