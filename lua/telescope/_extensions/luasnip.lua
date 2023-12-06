@@ -65,13 +65,15 @@ local default_search_text = function(entry)
     .. filter_description(entry.context.name, entry.context.description)
 end
 
-M.opts = {
+local _opts = {
   preview = {
     check_mime_type = true,
   },
 }
+M.opts = _opts
+
 M.luasnip_fn = function(opts)
-  opts = vim.tbl_extend('keep', opts or {}, M.opts)
+  local opts = vim.tbl_extend('keep', opts or {}, M.opts or _opts)
 
   -- print(("debug: %s: opts.test"):format(debug.getinfo(1).source))
   -- print(vim.inspect(opts.test))
@@ -174,7 +176,7 @@ end -- end custom function
 -- stylua: ignore start
 return telescope.register_extension({
   setup = function(optsExt, opts)
-    M.opts = vim.tbl_extend('keep', optsExt, opts)
+    M.opts = vim.tbl_extend('keep', optsExt or {}, opts or {}, M.opts or _opts)
   end,
   exports = {
     luasnip            = M.luasnip_fn,
