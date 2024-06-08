@@ -14,7 +14,7 @@ local conf          = require("telescope.config").values
 local ext_conf      = require("telescope._extensions")
 -- stylua: ignore end
 
-M = {}
+local M = {}
 
 local filter_null = function(str, default)
   return str and str or (default and default or '')
