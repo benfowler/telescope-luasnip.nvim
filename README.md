@@ -8,6 +8,13 @@ If you find something wrong, please raise an issue or better yet, raise a PR.
 
 ![telescope-luasnip.nvim in action](screenshot.png)
 
+> [!WARNING]
+> **HELP WANTED**: The original author currently doesn't have much capacity to
+> support users or get the regression tests done at the moment.
+>
+> Can you help out?  If so, please feel free to take a look at the Issues,
+> pick up a ticket, and maybe open a PR.
+
 ## Requirements
 
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) (required)
