@@ -127,9 +127,8 @@ M.luasnip_fn = function(opts)
                     or default_search_text
                 return {
                     value = entry,
-                    filename = entry.context.trigger,
                     display = make_display,
-                    text = string.format(" => %s | %s | %s", entry.ft, entry.context.name, entry.context.description[1] or ''),
+                    ordinal = search_fn(entry),
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
                         if opts.preview.check_mime_type then
