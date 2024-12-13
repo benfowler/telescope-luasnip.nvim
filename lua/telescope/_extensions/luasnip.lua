@@ -144,7 +144,7 @@ M.luasnip_fn = function(opts)
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
                         if opts.preview.check_mime_type then
-                            vim.api.nvim_buf_set_option(bufnr, "filetype", entry.ft)
+                          vim.api.nvim_set_option_value('filetype', entry.ft, {buf = bufnr})
                         end
                         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, snippet)
                     end
