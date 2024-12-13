@@ -102,14 +102,23 @@ M.luasnip_fn = function(opts)
     end
   end)
 
-  local displayer = entry_display.create {
-    separator = ' ',
-    items = { { width = 12 }, { width = 24 }, { width = 16 }, { remaining = true } },
-  }
-
   local make_display = function(entry)
+    local ok, devicons = pcall(require, 'nvim-web-devicons')
+    local col1_width = ok and 4 or 12
+    local displayer = entry_display.create {
+      separator = ' ',
+      items = { { width = col1_width }, { width = 24 }, { width = 16 }, { remaining = true } },
+    }
+    local col1 = entry.value.ft
+    if ok then
+      local icon, hl_group = devicons.get_icon_by_filetype(entry.value.ft)
+      if icon then
+        col1 = { icon, hl_group }
+      end
+    end
+
     return displayer {
-      entry.value.ft,
+      col1,
       entry.value.context.name,
       { entry.value.context.trigger, 'TelescopeResultsNumber' },
       filter_description(entry.value.context.name, entry.value.context.description),
@@ -135,7 +144,7 @@ M.luasnip_fn = function(opts)
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
                         if opts.preview.check_mime_type then
-                            vim.api.nvim_buf_set_option(bufnr, "filetype", entry.ft)
+                          vim.api.nvim_set_option_value('filetype', entry.ft, {buf = bufnr})
                         end
                         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, snippet)
                     end
