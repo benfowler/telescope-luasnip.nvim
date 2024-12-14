@@ -1,15 +1,15 @@
 local has_telescope, telescope = pcall(require, 'telescope')
 if not has_telescope then
-  error('This plugins requires nvim-telescope/telescope.nvim')
+  error 'This plugins requires nvim-telescope/telescope.nvim'
 end
 
 -- stylua: ignore start
-local actions       = require("telescope.actions")
 local action_state  = require("telescope.actions.state")
+local actions       = require("telescope.actions")
+local entry_display = require("telescope.pickers.entry_display")
 local finders       = require("telescope.finders")
 local pickers       = require("telescope.pickers")
 local previewers    = require("telescope.previewers")
-local entry_display = require("telescope.pickers.entry_display")
 local conf          = require("telescope.config").values
 local ext_conf      = require("telescope._extensions")
 -- stylua: ignore end
@@ -73,7 +73,7 @@ local _opts = {
 M.opts = _opts
 
 M.luasnip_fn = function(opts)
-  local opts = vim.tbl_extend('keep', opts or {}, M.opts or _opts)
+  opts = vim.tbl_extend('keep', opts or {}, M.opts or _opts)
 
   -- print(("debug: %s: opts.test"):format(debug.getinfo(1).source))
   -- print(vim.inspect(opts.test))
@@ -89,7 +89,7 @@ M.luasnip_fn = function(opts)
       end
     end
   else
-    print('LuaSnips is not available')
+    print 'LuaSnip is not available'
   end
 
   table.sort(objs, function(a, b)
@@ -102,18 +102,18 @@ M.luasnip_fn = function(opts)
     end
   end)
 
-  local displayer = entry_display.create({
+  local displayer = entry_display.create {
     separator = ' ',
     items = { { width = 12 }, { width = 24 }, { width = 16 }, { remaining = true } },
-  })
+  }
 
   local make_display = function(entry)
-    return displayer({
+    return displayer {
       entry.value.ft,
       entry.value.context.name,
       { entry.value.context.trigger, 'TelescopeResultsNumber' },
       filter_description(entry.value.context.name, entry.value.context.description),
-    })
+    }
   end
 
     -- stylua: ignore
@@ -122,14 +122,15 @@ M.luasnip_fn = function(opts)
         finder = finders.new_table({
             results = objs,
             entry_maker = function(entry)
-                search_fn = ext_conf._config.luasnip
+                local search_fn = ext_conf._config.luasnip
                     and ext_conf._config.luasnip.search
                     or default_search_text
                 return {
                     value = entry,
                     filename = entry.context.trigger,
                     display = make_display,
-                    text = string.format(" %s | %s | %s", entry.ft, entry.context.name, entry.context.description[1] or ''),
+                    text = string.format(" %s | %s | %s", entry.ft, entry.context.name,
+                        entry.context.description[1] or ''),
                     ordinal = search_fn(entry),
                     preview_command = function(_, bufnr)
                         local snippet = get_docstring(luasnip, entry.ft, entry.context)
