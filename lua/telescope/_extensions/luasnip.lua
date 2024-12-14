@@ -103,19 +103,23 @@ M.luasnip_fn = function(opts)
   end)
 
   local make_display = function(entry)
-    local ok, devicons = pcall(require, 'nvim-web-devicons')
-    local col1_width = ok and 4 or 12
+    local col1_width = 12
+    local col1 = entry.value.ft
+    if not ext_conf._config.luasnip or ext_conf._config.luasnip.use_devicons ~= false then
+      local has_devicons, devicons = pcall(require, 'nvim-web-devicons')
+      col1_width = has_devicons and 4 or 12
+      if has_devicons then
+        local icon, hl_group = devicons.get_icon_by_filetype(entry.value.ft)
+        if icon then
+          col1 = { icon, hl_group }
+        end
+      end
+    end
+
     local displayer = entry_display.create {
       separator = ' ',
       items = { { width = col1_width }, { width = 24 }, { width = 16 }, { remaining = true } },
     }
-    local col1 = entry.value.ft
-    if ok then
-      local icon, hl_group = devicons.get_icon_by_filetype(entry.value.ft)
-      if icon then
-        col1 = { icon, hl_group }
-      end
-    end
 
     return displayer {
       col1,
