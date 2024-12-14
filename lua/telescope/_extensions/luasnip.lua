@@ -89,7 +89,7 @@ M.luasnip_fn = function(opts)
       end
     end
   else
-    print('LuaSnips is not available')
+    print('LuaSnip is not available')
   end
 
   table.sort(objs, function(a, b)
