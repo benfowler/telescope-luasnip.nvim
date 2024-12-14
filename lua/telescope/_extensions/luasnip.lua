@@ -1,15 +1,15 @@
 local has_telescope, telescope = pcall(require, 'telescope')
 if not has_telescope then
-  error('This plugins requires nvim-telescope/telescope.nvim')
+  error 'This plugins requires nvim-telescope/telescope.nvim'
 end
 
 -- stylua: ignore start
-local actions       = require("telescope.actions")
 local action_state  = require("telescope.actions.state")
+local actions       = require("telescope.actions")
+local entry_display = require("telescope.pickers.entry_display")
 local finders       = require("telescope.finders")
 local pickers       = require("telescope.pickers")
 local previewers    = require("telescope.previewers")
-local entry_display = require("telescope.pickers.entry_display")
 local conf          = require("telescope.config").values
 local ext_conf      = require("telescope._extensions")
 -- stylua: ignore end
@@ -89,7 +89,7 @@ M.luasnip_fn = function(opts)
       end
     end
   else
-    print('LuaSnip is not available')
+    print 'LuaSnip is not available'
   end
 
   table.sort(objs, function(a, b)
@@ -102,18 +102,18 @@ M.luasnip_fn = function(opts)
     end
   end)
 
-  local displayer = entry_display.create({
+  local displayer = entry_display.create {
     separator = ' ',
     items = { { width = 12 }, { width = 24 }, { width = 16 }, { remaining = true } },
-  })
+  }
 
   local make_display = function(entry)
-    return displayer({
+    return displayer {
       entry.value.ft,
       entry.value.context.name,
       { entry.value.context.trigger, 'TelescopeResultsNumber' },
       filter_description(entry.value.context.name, entry.value.context.description),
-    })
+    }
   end
 
     -- stylua: ignore
