@@ -19,6 +19,7 @@ If you find something wrong, please raise an issue or better yet, raise a PR.
 
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) (required)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) (required)
+- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) (optional)
 
 ## Setup
 
@@ -95,6 +96,20 @@ require('telescope').setup {
         -- ...
       end
     }))
+}
+```
+
+If `nvim-web-devicons` is installed, the icons will be displayed in the picker. If you want to disable this feature, you can explicitly set `use_devicons` to `false`:
+
+```lua
+require('telescope').setup {
+  extensions = {
+    -- ...
+    luasnip = {
+      use_devicons = false
+    },
+     -- ...
+  }
 }
 ```
 
