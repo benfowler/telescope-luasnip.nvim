@@ -73,7 +73,7 @@ local _opts = {
 M.opts = _opts
 
 M.luasnip_fn = function(opts)
-  local opts = vim.tbl_extend('keep', opts or {}, M.opts or _opts)
+  opts = vim.tbl_extend('keep', opts or {}, M.opts or _opts)
 
   -- print(("debug: %s: opts.test"):format(debug.getinfo(1).source))
   -- print(vim.inspect(opts.test))
